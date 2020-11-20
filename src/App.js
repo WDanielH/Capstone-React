@@ -4,12 +4,19 @@ import './App.css';
 // import './Tailwind.css';
 import NavBar from "./NavBar";
 
+// var yahooFinance = require('yahoo-finance');
 
 // useState
 // useEffect
 // Child components
 // Relationship beween parent and child + Props
 // Forms in React
+
+const STOCK_PRICES = [
+    {name: 'AAPL', price: '120'},
+  {name: 'MSFT', price: '110'},
+  {name: 'INTL', price: '80'}
+]
 
 
 function App() {
@@ -20,6 +27,25 @@ function App() {
   const [inputText, setInputText] = useState('');
 
   const [counter, setCounter] = useState(0);
+
+  const [cash, setCash] = useState(100000);
+
+  const [searchStockStr, setSearchStockStr] = useState('');
+
+  const [shares, setShares] = useState('1');
+
+  const [selectedStock, setSelectedStock] = useState();
+
+  // useEffect(() => {
+  //   yahooFinance.quote({
+  //     symbol: 'AAPL',
+  //     // modules: [ 'price', 'summaryDetail' ] // see the docs for the full list
+  //     modules: [ 'price']
+  //   }, function (err, quotes) {
+  //     console.log(err)
+  //     console.log(quotes)
+  //   });
+  // }, [])
 
   useEffect(() => {
     console.log('this runs when the name changes');
@@ -73,8 +99,42 @@ function App() {
 
   };
 
+  const getQuote = async () => {
+    let stock;
+    STOCK_PRICES.map((s) => {
+      if(s.name == searchStockStr){
+        stock = s;
+      }
+    })
+
+    // console.log(stock);
+
+    setSelectedStock(stock);
+
+    console.log('get quote was clicked! and the value of the search string is: ', searchStockStr);
+    setSearchStockStr('');
+  };
+
+  const onInputChange = async (event) => {
+    // console.log(event.currentTarget.value);
+    setSearchStockStr(event.currentTarget.value);
+  };
+
+  // const updateShares = async () => {
+  //
+  // };
+
+  const buyStock = async () => {
+    console.log('The user wants to buy ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
+    let cost = shares * selectedStock.price;
+    console.log('the cost is: ', cost);
+
+  };
+
   return (
     <div className="App">
+
+
 
 
       {/*Below is the flexbox way to design the page using tailwind*/}
@@ -106,8 +166,57 @@ function App() {
 
       <div className="grid grid-cols-12 gap-0 xl:p-20">
 
-        <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-red-500'}>
-          this is a graph box
+        <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-red-500 p-20'}>
+
+          <h1 className={'font-bold text-2xl text-teal-600'}>Cash Available : {cash}</h1>
+
+          <br/>
+
+          <hr/>
+
+          <br/>
+
+          <input className={'border'} type={'text'}
+                 onChange={onInputChange}
+                 value={searchStockStr} />
+
+          &nbsp;&nbsp;<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={getQuote}>Get Quote</button>
+
+
+          {selectedStock && <div>
+            <p className={'font-bold text-teal-600 text-xl p-5'}>Current Selected Stock: {selectedStock.name} | Price: ${selectedStock.price}</p>
+
+            <br/>
+            <button onClick={() => {
+              setShares(1);
+            }} className={shares==1 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>1</button>&nbsp;&nbsp;
+
+            <button onClick={() => {
+              setShares(5);
+            }} className={shares==5 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>5</button>&nbsp;&nbsp;
+
+            <button onClick={() => {
+              setShares(10);
+            }} className={shares==10 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>10</button>&nbsp;&nbsp;
+
+            <button onClick={() => {
+              setShares(15);
+            }} className={shares==15 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>15</button>&nbsp;&nbsp;
+
+            <button onClick={() => {
+              setShares(20);
+            }} className={shares==20 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>20</button>&nbsp;&nbsp;
+            {/*<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>25</button>&nbsp;&nbsp;*/}
+            {/*<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>30</button>&nbsp;&nbsp;*/}
+
+            <br/>
+            <br/>
+            <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={buyStock}>BUY</button>&nbsp;&nbsp;
+            <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>SELL</button>
+
+          </div>}
+
+
 
         </div>
 
