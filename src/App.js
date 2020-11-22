@@ -18,7 +18,7 @@ const STOCK_PRICES = [
   {name: 'INTL', price: '80'}
 ]
 
-
+//this is a test
 function App() {
 
   const [name, setName] = useState('John');
