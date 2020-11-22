@@ -1,16 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
 import './App.css';
 // import './Tailwind.css';
 import NavBar from "./NavBar";
-
-// var yahooFinance = require('yahoo-finance');
 
 // useState
 // useEffect
 // Child components
 // Relationship beween parent and child + Props
 // Forms in React
+// api key for alphavantage IK6FXYBJZ5VUU6JE
+// https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=IK6FXYBJZ5VUU6JE
 
 const STOCK_PRICES = [
     {name: 'AAPL', price: '120'},
@@ -18,7 +17,6 @@ const STOCK_PRICES = [
   {name: 'INTL', price: '80'}
 ]
 
-//this is a test
 function App() {
 
   const [name, setName] = useState('John');
@@ -28,7 +26,7 @@ function App() {
 
   const [counter, setCounter] = useState(0);
 
-  const [cash, setCash] = useState(100000);
+  const [cash, setCash] = useState(200000);
 
   const [searchStockStr, setSearchStockStr] = useState('');
 
@@ -131,6 +129,11 @@ function App() {
 
   };
 
+//var portfolioItems =[];
+//portfolioItems.push({index: 1, value: "AAPL", Price: 120});
+//portfolioItems.push({index: 2, value: "INTL", done: 80});
+//portfolioItems.push({index: 3, value: "MSFT", done: 110});
+
   return (
     <div className="App">
 
@@ -166,7 +169,7 @@ function App() {
 
       <div className="grid grid-cols-12 gap-0 xl:p-20">
 
-        <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-red-500 p-20'}>
+        <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-teal-500 p-20'}>
 
           <h1 className={'font-bold text-2xl text-teal-600'}>Cash Available : {cash}</h1>
 
@@ -220,9 +223,16 @@ function App() {
 
         </div>
 
-        <div className={'col-span-12 md:col-span-5 border-4 border-gray-900'}>
-          this is a portfolio box
+        <div className={'col-span-12 md:col-span-5 border-4 border-blue-900'}>
+          Here is Your Portfolio 
 
+          <p>SYMBOL -- Share Qty -- Share Price -- Total Value</p>
+          <ul>
+          <li>AAPL - 0 - 0 - 0</li>
+          <li>INTL - 0 - 0 - 0</li>
+          <li>MSFT - 0 - 0 - 0</li>
+          </ul>
+         
         </div>
 
       </div>
