@@ -12,10 +12,20 @@ import NavBar from "./NavBar";
 // https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=IK6FXYBJZ5VUU6JE
 
 const STOCK_PRICES = [
-    {name: 'AAPL', price: '120'},
+  {name: 'AAPL', price: '120'},
   {name: 'MSFT', price: '110'},
   {name: 'INTL', price: '80'}
 ]
+
+var data = [
+  {id: 1, stock: "AAPL", price: 120, shares: 0},
+  {id: 2, stock: "INTL", price: 80, shares: 0},
+  {id: 3, stock: "MSFT", price: 110, shares: 0},
+  {id: 4, stock: "Cash", price: 1, shares: 10000},
+
+];
+
+
 
 function App() {
 
@@ -33,6 +43,40 @@ function App() {
   const [shares, setShares] = useState('1');
 
   const [selectedStock, setSelectedStock] = useState();
+
+  const portfolio = ["AAPL", "INTL", "MSFT", "CASH"];
+/*
+  const quotes = [
+    {stock: 'AAPL',
+    Price: 120},
+    {stock: 'INTL',
+    Price: 80},
+    {stock: 'MSFT',
+    Price: 110},
+    {stock: 'CASH',
+    Price: 1}
+  ];
+
+  const Quote = props => {
+    return (
+      <div>
+        <h4>{props.stock}</h4>
+        <p>{props.price}</p>
+      </div>
+    );
+  };
+  Quote.propTypes = {
+    text: React.PropTypes.string,
+    author: React.PropTypes.string
+  }
+*/
+  // { stock: 'AAPL', Price: 120. Holding: 0 },
+  // { stock: 'INTL', Price: 80. Holding: 0 },
+  // { stock: 'MSFT', Price: 110. Holding: 0 },
+  // { stock: 'CASH', Price: 1. Holding: 10000 },
+ // ];
+
+  
 
   // useEffect(() => {
   //   yahooFinance.quote({
@@ -126,6 +170,15 @@ function App() {
     console.log('The user wants to buy ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
     let cost = shares * selectedStock.price;
     console.log('the cost is: ', cost);
+    // make chaanges to portfolio and change the cash available.
+
+  };
+
+  const sellStock = async () => {
+    console.log('The user wants to sell ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
+    let cost = shares * selectedStock.price;
+    console.log('the proceeds are: ', cost);
+    // make chaanges to portfolio and change the cash available.
 
   };
 
@@ -215,8 +268,7 @@ function App() {
             <br/>
             <br/>
             <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={buyStock}>BUY</button>&nbsp;&nbsp;
-            <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>SELL</button>
-
+            <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={sellStock}>SELL</button>&nbsp;&nbsp;
           </div>}
 
 
@@ -224,17 +276,16 @@ function App() {
         </div>
 
         <div className={'col-span-12 md:col-span-5 border-4 border-blue-900'}>
-          Here is Your Portfolio 
-
-          <p>SYMBOL -- Share Qty -- Share Price -- Total Value</p>
-          <ul>
-          <li>AAPL - 0 - 0 - 0</li>
-          <li>INTL - 0 - 0 - 0</li>
-          <li>MSFT - 0 - 0 - 0</li>
-          </ul>
-         
+   
+             <h2> Here is Your Portfolio</h2> 
+             <p> </p>
+             <ul className="list-group">
+             {data.map(function(data){                
+                    return <li className="list-group-item">{data.stock + "  Share Price:  " + data.price + "  Shares:  " +data.shares + " Holding: " +data.price*data.shares}</li>;
+                  })}
+             </ul>
         </div>
-
+        
       </div>
 
 
