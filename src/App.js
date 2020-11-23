@@ -18,8 +18,12 @@ const STOCK_PRICES = [
 ]
 
 
-// need to prevent buying more than you have cash
+//Basic Project Complete - 
 // need to style
+// IDEAS - Add Line by current selected stock "current selected trade" - conditional formatting to display in red if the trade value> cash available
+// IDEAS - Implement the API to pull all stocks instead of just our three 
+// IDEAS - Implement log in features and save each users portfolio
+// IDEAS - Implement share price tracking ("portfolio[i].purchase price") which we can then use to display net gain/loss
 
 
 
@@ -297,17 +301,18 @@ function App() {
 
 
         </div>
-
-        <div className={'col-span-12 md:col-span-5 border-4 border-blue-900'}>
+        {/*<pre>{JSON.stringify(portfolio)}</pre>*/}
+        <div className={'col-span-12 md:col-span-5 border-4 border-teal-500'}>
    
-            <pre>{JSON.stringify(portfolio)}</pre>
-             <h2> Here is Your Portfolio</h2> 
+            
+            <h1 className={'font-bold text-2xl text-teal-600 p-5'}>Here is Your Portfolio :</h1>
+            
              <p> </p>
              
              
              <ul className="list-group">
              {portfolio.map(function(portfolio){                
-                    return <li className="list-group-item">{portfolio.stock + "  Share Price:  " + portfolio.price + "  Shares:  " +portfolio.shares + " Holding: " +portfolio.price*portfolio.shares}</li>;
+                    return <li className='font-bold text-teal-600 text-l p-2'>{portfolio.stock + "  Share Price:  " + portfolio.price + "  Shares:  " +portfolio.shares + " Holding: " +portfolio.price*portfolio.shares}</li>;
                   })}
              </ul>
             
@@ -316,7 +321,7 @@ function App() {
       </div>
 
 
-
+    
 
 
 
