@@ -142,13 +142,11 @@ function App() {
       
       setCash(cash-cost);
       
-      setPortfolio(prevPortfolio => [...prevPortfolio, {
-        id: selectedStock.name,
-        stock: selectedStock.name,
-        price: selectedStock.price,
-        shares: portfolio.shares + shares,
-      }
-      ])
+      const newShares =[...portfolio];
+      newShares[1].shares = newShares[1].shares + shares;
+      setPortfolio(newShares);
+      
+      console.log("if function fired - user already has the stock")
     } else {
       setCash(cash-cost);
       setPortfolio(prevPortfolio => [...prevPortfolio, {
