@@ -133,14 +133,33 @@ function App() {
     let cost = shares * selectedStock.price;
     console.log('the cost is: ', cost);
     console.log('cash ', cash-cost)
-    setCash(cash-cost);
-    setPortfolio(prevPortfolio => [...prevPortfolio, {
-      id: prevPortfolio.length,
-      stock: selectedStock.name,
-      price: selectedStock.price,
-      shares: shares,
+    
+
+    //const trimmed = selectedStock.trim();
+
+    if (portfolio.includes(selectedStock.name))
+    {
+      
+      setCash(cash-cost);
+      
+      setPortfolio(prevPortfolio => [...prevPortfolio, {
+        id: selectedStock.name,
+        stock: selectedStock.name,
+        price: selectedStock.price,
+        shares: portfolio.shares + shares,
+      }
+      ])
+    } else {
+      setCash(cash-cost);
+      setPortfolio(prevPortfolio => [...prevPortfolio, {
+        id: selectedStock.name,
+        stock: selectedStock.name,
+        price: selectedStock.price,
+        shares: shares,
+      }
+      ])
     }
-    ])
+    
        // make chaanges to portfolio and change the cash available.
 
   };
