@@ -146,6 +146,7 @@ function App() {
     console.log(portfolio[i].stock)
    }
     
+   
     // if - check the array for Selected Stock - if yes - take the steps below, if no - then do what we do now
     // for loop, for i=0, i< portfolio.length, i++
     // if portfolio[i].stock = selectedStock.name
@@ -155,6 +156,23 @@ function App() {
 
     setCash(cash-cost);
     //setportfolio(prevportfolio[0].shares=cash);
+    
+    const newPortfolio = [...portfolio];
+    newPortfolio[0].shares = newPortfolio[0].shares-cost;
+    setPortfolio(newPortfolio);
+
+    //
+
+    var ownStock = 0;
+    for (let i=0; i < portfolio.length; i++)
+    {
+      var stockname = portfolio[i].stock;
+      if (stockname == selectedStock.name)
+    {
+   ownStock++; 
+    }
+    }
+    console.log('this is', ownStock);
     setPortfolio(prevPortfolio => [...prevPortfolio, {
         id: prevPortfolio.length,
         stock: selectedStock.name,
