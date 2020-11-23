@@ -18,12 +18,13 @@ const STOCK_PRICES = [
 ]
 
 var data = [
-  {id: 1, stock: "AAPL", price: 120, shares: 0},
-  {id: 2, stock: "INTL", price: 80, shares: 0},
-  {id: 3, stock: "MSFT", price: 110, shares: 0},
-  {id: 4, stock: "Cash", price: 1, shares: 10000},
+  //{id: 1, stock: "AAPL", price: 120, shares: 0},
+  //{id: 2, stock: "INTL", price: 80, shares: 0},
+  //{id: 3, stock: "MSFT", price: 110, shares: 0},
+  {id: 1, stock: "Cash", price: 1, shares: 10000}]
+  var nextID=2 ;
 
-];
+
 
 
 
@@ -36,7 +37,7 @@ function App() {
 
   const [counter, setCounter] = useState(0);
 
-  const [cash, setCash] = useState(200000);
+  const [cash, setCash] = useState(10000);
 
   const [searchStockStr, setSearchStockStr] = useState('');
 
@@ -44,50 +45,10 @@ function App() {
 
   const [selectedStock, setSelectedStock] = useState();
 
-  const portfolio = ["AAPL", "INTL", "MSFT", "CASH"];
-/*
-  const quotes = [
-    {stock: 'AAPL',
-    Price: 120},
-    {stock: 'INTL',
-    Price: 80},
-    {stock: 'MSFT',
-    Price: 110},
-    {stock: 'CASH',
-    Price: 1}
-  ];
+  const [portfolio, setPortfolio] = useState([]);
 
-  const Quote = props => {
-    return (
-      <div>
-        <h4>{props.stock}</h4>
-        <p>{props.price}</p>
-      </div>
-    );
-  };
-  Quote.propTypes = {
-    text: React.PropTypes.string,
-    author: React.PropTypes.string
-  }
-*/
-  // { stock: 'AAPL', Price: 120. Holding: 0 },
-  // { stock: 'INTL', Price: 80. Holding: 0 },
-  // { stock: 'MSFT', Price: 110. Holding: 0 },
-  // { stock: 'CASH', Price: 1. Holding: 10000 },
- // ];
+  //const portfolio = ["AAPL", "INTL", "MSFT", "CASH"];
 
-  
-
-  // useEffect(() => {
-  //   yahooFinance.quote({
-  //     symbol: 'AAPL',
-  //     // modules: [ 'price', 'summaryDetail' ] // see the docs for the full list
-  //     modules: [ 'price']
-  //   }, function (err, quotes) {
-  //     console.log(err)
-  //     console.log(quotes)
-  //   });
-  // }, [])
 
   useEffect(() => {
     console.log('this runs when the name changes');
@@ -166,11 +127,20 @@ function App() {
   //
   // };
 
+ 
   const buyStock = async () => {
     console.log('The user wants to buy ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
     let cost = shares * selectedStock.price;
     console.log('the cost is: ', cost);
-    // make chaanges to portfolio and change the cash available.
+    console.log('cash ', cash-cost)
+    setPortfolio(prevPortfolio => [...prevPortfolio, {
+      id: prevPortfolio.length,
+      stock: selectedStock.name,
+      price: selectedStock.price,
+      shares: shares,
+    }
+    ])
+       // make chaanges to portfolio and change the cash available.
 
   };
 
@@ -178,6 +148,7 @@ function App() {
     console.log('The user wants to sell ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
     let cost = shares * selectedStock.price;
     console.log('the proceeds are: ', cost);
+    console.log('cash ', cash+cost)
     // make chaanges to portfolio and change the cash available.
 
   };
@@ -277,13 +248,17 @@ function App() {
 
         <div className={'col-span-12 md:col-span-5 border-4 border-blue-900'}>
    
+            <pre>{JSON.stringify(portfolio)}</pre>
              <h2> Here is Your Portfolio</h2> 
              <p> </p>
+             
+             
              <ul className="list-group">
              {data.map(function(data){                
                     return <li className="list-group-item">{data.stock + "  Share Price:  " + data.price + "  Shares:  " +data.shares + " Holding: " +data.price*data.shares}</li>;
                   })}
              </ul>
+            
         </div>
         
       </div>
