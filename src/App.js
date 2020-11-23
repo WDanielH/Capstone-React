@@ -17,6 +17,9 @@ const STOCK_PRICES = [
   {name: 'INTL', price: '80'}
 ]
 
+// need to fix buying one share
+
+
 //var data = [
   //{id: 1, stock: "AAPL", price: 120, shares: 0},
   //{id: 2, stock: "INTL", price: 80, shares: 0},
@@ -193,18 +196,37 @@ function App() {
        // make chaanges to portfolio and change the cash available.
        
   };
-
+// update cash in the portfolio
   const sellStock = async () => {
     console.log('The user wants to sell ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
     let cost = shares * selectedStock.price;
     console.log('the proceeds are: ', cost);
     console.log('cash ', cash+cost)
-    // make chaanges to portfolio and change the cash available.
 
-    // check to make sure the portfolio has the stock being sold in the 
 
-  };
+    //check if the quantity user is trying to sell is < = shares held
+    var ownStock = 0;
+    for (let i=0; i < portfolio.length; i++)
+    {
+      var stockname = portfolio[i].stock;
+      if (stockname == selectedStock.name) //checks if we own the stock
+    {
+   ownStock++;
+   if (portfolio[i].shares >= shares) //checks if we have enough shares
+   {
+    setCash(cash+cost);
+    const newPortfolio = [...portfolio];
+    newPortfolio[i].shares = newPortfolio[i].shares-shares;
+    newPortfolio[0].shares = newPortfolio[0].shares+shares;
+    setPortfolio(newPortfolio);
+       
 
+   }else{console.log("Not Enough Shares");}
+   
+   
+    }
+}
+  }
 //var portfolioItems =[];
 //portfolioItems.push({index: 1, value: "AAPL", Price: 120});
 //portfolioItems.push({index: 2, value: "INTL", done: 80});
