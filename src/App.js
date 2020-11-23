@@ -17,28 +17,25 @@ const STOCK_PRICES = [
   {name: 'INTL', price: '80'}
 ]
 
-var data = [
+//var data = [
   //{id: 1, stock: "AAPL", price: 120, shares: 0},
   //{id: 2, stock: "INTL", price: 80, shares: 0},
   //{id: 3, stock: "MSFT", price: 110, shares: 0},
-  {id: 1, stock: "Cash", price: 1, shares: 10000}]
+  //{id: 1, stock: "Cash", price: 1, shares: 10000}]
   
   var nextID=0 ;
-
-
-
 
 
 function App() {
 
   const [name, setName] = useState('John');
-  const [showJaneText, setJaneShowText] = useState(false);
+  const [showJaneText, setJaneShowText] = useState(false);  // this is for the future implementing log ints
 
   const [inputText, setInputText] = useState('');
 
   const [counter, setCounter] = useState(0);
 
-  const [cash, setCash] = useState(0);
+  const [cash, setCash] = useState(10000);
 
   const [searchStockStr, setSearchStockStr] = useState('');
 
@@ -46,9 +43,9 @@ function App() {
 
   const [selectedStock, setSelectedStock] = useState();
 
-  const [portfolio, setPortfolio] = useState([]);
+  const [portfolio, setPortfolio] = useState([{id:1, stock: 'CASH', price: 1, shares: 10000}]);
 
-  //const portfolio = ["AAPL", "INTL", "MSFT", "CASH"];
+  //const portfolio = ["AAPL", "INTL", "MSFT", "CASH"];  this is old can delete 
 
 
   useEffect(() => {
@@ -57,9 +54,10 @@ function App() {
       setJaneShowText(true);
     }
     // (name=='Jane' && setJaneShowText(true))
+    // this isnt currently implemented
   }, [name]);
 
-  useEffect(() => {
+  useEffect(() => {  //not currently being used for anything can delete
     console.log('this code is run when the counter value changes')
     if(counter==10){
       alert('The counter is at 10!');
@@ -67,34 +65,18 @@ function App() {
     if(counter==20){
       alert('The counter is at 20!');
     }
-  }, [counter]);
+  }, [counter]); 
 
-  const changeName = () => {
+  const changeName = () => { //not currently being used may implement later
     console.log('change name is being called');
     setName('Jane');
   };
 
-  const getCash = () => {
-    
-      setCash(10000);
-      setPortfolio(prevPortfolio => [...prevPortfolio, {
-          //id: nextID,
-          stock: "CASH",
-          price: 1,
-          shares: 10000,
-      },
-      
-      //nextID++,
-      ])
-      
-      
-         // make chaanges to portfolio and change the cash available.
-         
-    };
+  
 
    
 
-  const updateCounter = () => {
+  const updateCounter = () => { //currently not doing anything
     let currentValue = counter;
     currentValue = currentValue + 1;
     setCounter(currentValue);
@@ -103,11 +85,11 @@ function App() {
     // instead of writing code on counter change here
   };
 
-  const receiveInfoFromChild = async (info) => {
+  const receiveInfoFromChild = async (info) => { //currently not doing anything
     console.log(info);
   };
 
-  const runOnInputChange = async (event) => {
+  const runOnInputChange = async (event) => { 
     // console.log(event.currentTarget.value);
     setInputText(event.currentTarget.value);
   };
@@ -254,7 +236,7 @@ function App() {
                  value={searchStockStr} />
 
           &nbsp;&nbsp;<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={getQuote}>Get Quote</button>
-          &nbsp;&nbsp;<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={getCash}>Add Cash</button>
+        
 
 
           {selectedStock && <div>
