@@ -17,7 +17,7 @@ const STOCK_PRICES = [
   {name: 'INTL', price: '80'}
 ]
 
-// need to fix buying one share
+
 // need to prevent buying more than you have cash
 // need to style
 
@@ -169,15 +169,12 @@ function App() {
         shares: shares,
     },
    
-    
-    //nextID++,
     ])
   }
     
-       // make chaanges to portfolio and change the cash available.
-       
+     
   };
-// update cash in the portfolio
+
   const sellStock = async () => {
     console.log('The user wants to sell ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
     let cost = shares * selectedStock.price;
@@ -208,10 +205,7 @@ function App() {
     }
 }
   }
-//var portfolioItems =[];
-//portfolioItems.push({index: 1, value: "AAPL", Price: 120});
-//portfolioItems.push({index: 2, value: "INTL", done: 80});
-//portfolioItems.push({index: 3, value: "MSFT", done: 110});
+
 
   return (
     <div className="App">
