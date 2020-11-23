@@ -43,7 +43,7 @@ function App() {
 
   const [selectedStock, setSelectedStock] = useState();
 
-  const [portfolio, setPortfolio] = useState([{id:1, stock: 'CASH', price: 1, shares: 10000}]);
+  const [portfolio, setPortfolio] = useState([{id:0, stock: 'CASH', price: 1, shares: 10000}]);
 
   //const portfolio = ["AAPL", "INTL", "MSFT", "CASH"];  this is old can delete 
 
@@ -156,7 +156,7 @@ function App() {
     setCash(cash-cost);
     //setportfolio(prevportfolio[0].shares=cash);
     setPortfolio(prevPortfolio => [...prevPortfolio, {
-        //id: nextID,
+        id: prevPortfolio.length,
         stock: selectedStock.name,
         price: selectedStock.price,
         shares: shares,
