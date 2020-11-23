@@ -170,19 +170,25 @@ function App() {
       if (stockname == selectedStock.name)
     {
    ownStock++; 
+    const newPortfolio = [...portfolio];
+    newPortfolio[i].shares = newPortfolio[i].shares+shares;
+    setPortfolio(newPortfolio);
     }
     }
     console.log('this is', ownStock);
+    if (ownStock==0)
+    {
     setPortfolio(prevPortfolio => [...prevPortfolio, {
         id: prevPortfolio.length,
         stock: selectedStock.name,
         price: selectedStock.price,
         shares: shares,
     },
+   
     
     //nextID++,
     ])
-    
+  }
     
        // make chaanges to portfolio and change the cash available.
        
