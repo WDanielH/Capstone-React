@@ -254,8 +254,8 @@ function App() {
              
              
              <ul className="list-group">
-             {data.map(function(data){                
-                    return <li className="list-group-item">{data.stock + "  Share Price:  " + data.price + "  Shares:  " +data.shares + " Holding: " +data.price*data.shares}</li>;
+             {portfolio.map(function(portfolio){                
+                    return <li className="list-group-item">{portfolio.stock + "  Share Price:  " + portfolio.price + "  Shares:  " +portfolio.shares + " Holding: " +portfolio.price*portfolio.shares}</li>;
                   })}
              </ul>
             
