@@ -268,7 +268,7 @@ function App() {
 
           {selectedStock && <div>
             <p className={'font-bold text-teal-600 text-xl p-5'}>Current Selected Stock: {selectedStock.name} | Price: ${selectedStock.price}</p>
-            <p className={'font-bold text-teal-600 text-xl p-5'}>Selected Trade Value: {selectedStock.price * shares}</p>
+            <p className={cash < selectedStock.price * shares ?'font-bold text-red-600 text-xl p-5' :'font-bold text-teal-600 text-xl p-5'}>Selected Trade Value: {selectedStock.price * shares}</p>
             <br/>
             <button onClick={() => {
               setShares(1);
@@ -294,7 +294,7 @@ function App() {
 
             <br/>
             <br/>
-            <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={buyStock}>BUY</button>&nbsp;&nbsp;
+            <button className={cash < selectedStock.price * shares ? 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded':'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={buyStock}>BUY</button>&nbsp;&nbsp;
             <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={sellStock}>SELL</button>&nbsp;&nbsp;
           </div>}
 
