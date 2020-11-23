@@ -18,15 +18,8 @@ const STOCK_PRICES = [
 ]
 
 // need to fix buying one share
-
-
-//var data = [
-  //{id: 1, stock: "AAPL", price: 120, shares: 0},
-  //{id: 2, stock: "INTL", price: 80, shares: 0},
-  //{id: 3, stock: "MSFT", price: 110, shares: 0},
-  //{id: 1, stock: "Cash", price: 1, shares: 10000}]
-  
-  var nextID=0 ;
+// need to prevent buying more than you have cash
+// need to style
 
 
 function App() {
@@ -47,9 +40,6 @@ function App() {
   const [selectedStock, setSelectedStock] = useState();
 
   const [portfolio, setPortfolio] = useState([{id:0, stock: 'CASH', price: 1, shares: 10000}]);
-
-  //const portfolio = ["AAPL", "INTL", "MSFT", "CASH"];  this is old can delete 
-
 
   useEffect(() => {
     console.log('this runs when the name changes');
@@ -76,9 +66,6 @@ function App() {
   };
 
   
-
-   
-
   const updateCounter = () => { //currently not doing anything
     let currentValue = counter;
     currentValue = currentValue + 1;
@@ -130,10 +117,7 @@ function App() {
     setSearchStockStr(event.currentTarget.value);
   };
 
-  // const updateShares = async () => {
-  //
-  // };
-
+  
  
   const buyStock = async () => {
     //console.log(portfolio[0].name);
@@ -150,15 +134,11 @@ function App() {
    }
     
    
-    // if - check the array for Selected Stock - if yes - take the steps below, if no - then do what we do now
-    // for loop, for i=0, i< portfolio.length, i++
-    // if portfolio[i].stock = selectedStock.name
-    // portfolio[i].shares = portfolio[i].shares+shares
-
    
+   //need to implement check to prevent spending negative dollars
 
     setCash(cash-cost);
-    //setportfolio(prevportfolio[0].shares=cash);
+    
     
     const newPortfolio = [...portfolio];
     newPortfolio[0].shares = newPortfolio[0].shares-cost;
