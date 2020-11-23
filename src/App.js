@@ -164,9 +164,12 @@ function App() {
     console.log(portfolio[i].stock)
    }
     
-    
+    // if - check the array for Selected Stock - if yes - take the steps below, if no - then do what we do now
+    // for loop, for i=0, i< portfolio.length, i++
+    // if portfolio[i].stock = selectedStock.name
+    // portfolio[i].shares = portfolio[i].shares+shares
 
-    //const trimmed = selectedStock.trim();
+   
 
     setCash(cash-cost);
     //setportfolio(prevportfolio[0].shares=cash);
@@ -191,6 +194,8 @@ function App() {
     console.log('the proceeds are: ', cost);
     console.log('cash ', cash+cost)
     // make chaanges to portfolio and change the cash available.
+
+    // check to make sure the portfolio has the stock being sold in the 
 
   };
 
