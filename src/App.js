@@ -22,7 +22,8 @@ var data = [
   //{id: 2, stock: "INTL", price: 80, shares: 0},
   //{id: 3, stock: "MSFT", price: 110, shares: 0},
   {id: 1, stock: "Cash", price: 1, shares: 10000}]
-  var nextID=2 ;
+  
+  var nextID=0 ;
 
 
 
@@ -110,6 +111,7 @@ function App() {
       }
     })
 
+    
     // console.log(stock);
 
     setSelectedStock(stock);
@@ -117,6 +119,24 @@ function App() {
     console.log('get quote was clicked! and the value of the search string is: ', searchStockStr);
     setSearchStockStr('');
   };
+
+  const getCash = async () => {
+    let stock;
+    STOCK_PRICES.map((s) => {
+      if(s.name == searchStockStr){
+        stock = s;
+      }
+    })
+
+    
+    // console.log(stock);
+
+    setSelectedStock(stock);
+
+    console.log('get quote was clicked! and the value of the search string is: ', searchStockStr);
+    setSearchStockStr('');
+  };
+
 
   const onInputChange = async (event) => {
     // console.log(event.currentTarget.value);
@@ -129,37 +149,37 @@ function App() {
 
  
   const buyStock = async () => {
+    //console.log(portfolio[0].name);
+    //event.preventDefault();
+    
     console.log('The user wants to buy ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
     let cost = shares * selectedStock.price;
     console.log('the cost is: ', cost);
     console.log('cash ', cash-cost)
+    //for (let i=0; i < portfolio.length; i++)
+   // {
+    //  console.log(nextID)
+    //  console.log(portfolio[i].id)
+   // }
+    
     
 
     //const trimmed = selectedStock.trim();
 
-    if (portfolio.includes(selectedStock.name))
-    {
-      
-      setCash(cash-cost);
-      
-      const newShares =[...portfolio];
-      newShares[1].shares = newShares[1].shares + shares;
-      setPortfolio(newShares);
-      
-      console.log("if function fired - user already has the stock")
-    } else {
-      setCash(cash-cost);
-      setPortfolio(prevPortfolio => [...prevPortfolio, {
-        id: selectedStock.name,
+    setCash(cash-cost);
+    setPortfolio(prevPortfolio => [...prevPortfolio, {
+        //id: nextID,
         stock: selectedStock.name,
         price: selectedStock.price,
         shares: shares,
-      }
-      ])
-    }
+    },
+    
+    //nextID++,
+    ])
+    
     
        // make chaanges to portfolio and change the cash available.
-
+       
   };
 
   const sellStock = async () => {
@@ -226,6 +246,7 @@ function App() {
                  value={searchStockStr} />
 
           &nbsp;&nbsp;<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={getQuote}>Get Quote</button>
+          &nbsp;&nbsp;<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={getCash}>Add Cash</button>
 
 
           {selectedStock && <div>
