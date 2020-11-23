@@ -22,6 +22,7 @@ const STOCK_PRICES = [
 // need to style
 
 
+
 function App() {
 
   const [name, setName] = useState('John');
@@ -197,7 +198,7 @@ function App() {
     setCash(cash+cost);
     const newPortfolio = [...portfolio];
     newPortfolio[i].shares = newPortfolio[i].shares-shares;
-    newPortfolio[0].shares = newPortfolio[0].shares+shares;
+    newPortfolio[0].shares = newPortfolio[0].shares+cost;
     setPortfolio(newPortfolio);
        
 
