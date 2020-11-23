@@ -38,7 +38,7 @@ function App() {
 
   const [counter, setCounter] = useState(0);
 
-  const [cash, setCash] = useState(10000);
+  const [cash, setCash] = useState(0);
 
   const [searchStockStr, setSearchStockStr] = useState('');
 
@@ -73,6 +73,26 @@ function App() {
     console.log('change name is being called');
     setName('Jane');
   };
+
+  const getCash = () => {
+    
+      setCash(10000);
+      setPortfolio(prevPortfolio => [...prevPortfolio, {
+          //id: nextID,
+          stock: "CASH",
+          price: 1,
+          shares: 10000,
+      },
+      
+      //nextID++,
+      ])
+      
+      
+         // make chaanges to portfolio and change the cash available.
+         
+    };
+
+   
 
   const updateCounter = () => {
     let currentValue = counter;
@@ -120,25 +140,7 @@ function App() {
     setSearchStockStr('');
   };
 
-  const getCash = async () => {
-    let stock;
-    STOCK_PRICES.map((s) => {
-      if(s.name == searchStockStr){
-        stock = s;
-      }
-    })
-
-    
-    // console.log(stock);
-
-    setSelectedStock(stock);
-
-    console.log('get quote was clicked! and the value of the search string is: ', searchStockStr);
-    setSearchStockStr('');
-  };
-
-
-  const onInputChange = async (event) => {
+    const onInputChange = async (event) => {
     // console.log(event.currentTarget.value);
     setSearchStockStr(event.currentTarget.value);
   };
@@ -156,17 +158,18 @@ function App() {
     let cost = shares * selectedStock.price;
     console.log('the cost is: ', cost);
     console.log('cash ', cash-cost)
-    //for (let i=0; i < portfolio.length; i++)
-   // {
-    //  console.log(nextID)
-    //  console.log(portfolio[i].id)
-   // }
+    for (let i=0; i < portfolio.length; i++)
+   {
+  
+    console.log(portfolio[i].stock)
+   }
     
     
 
     //const trimmed = selectedStock.trim();
 
     setCash(cash-cost);
+    //setportfolio(prevportfolio[0].shares=cash);
     setPortfolio(prevPortfolio => [...prevPortfolio, {
         //id: nextID,
         stock: selectedStock.name,
