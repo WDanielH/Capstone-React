@@ -128,16 +128,18 @@ function App() {
     let cost = shares * selectedStock.price;
     console.log('the cost is: ', cost);
     console.log('cash ', cash-cost)
-    for (let i=0; i < portfolio.length; i++)
-   {
+    //for (let i=0; i < portfolio.length; i++)
+  // {
   
-    console.log(portfolio[i].stock)
-   }
+   // console.log(portfolio[i].stock)
+  // }
     
    
    
    //need to implement check to prevent spending negative dollars
 
+   if (cost<= cash)
+   {
     setCash(cash-cost);
     
     
@@ -171,7 +173,7 @@ function App() {
    
     ])
   }
-    
+}  
      
   };
 
