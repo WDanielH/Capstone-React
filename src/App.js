@@ -133,6 +133,7 @@ function App() {
     let cost = shares * selectedStock.price;
     console.log('the cost is: ', cost);
     console.log('cash ', cash-cost)
+    setCash(cash-cost);
     setPortfolio(prevPortfolio => [...prevPortfolio, {
       id: prevPortfolio.length,
       stock: selectedStock.name,
