@@ -40,7 +40,7 @@ function App() {
 
   const [searchStockStr, setSearchStockStr] = useState('');
 
-  const [shares, setShares] = useState('1');
+  const [shares, setShares] = useState(1);
 
   const [selectedStock, setSelectedStock] = useState();
 
@@ -268,7 +268,7 @@ function App() {
 
           {selectedStock && <div>
             <p className={'font-bold text-teal-600 text-xl p-5'}>Current Selected Stock: {selectedStock.name} | Price: ${selectedStock.price}</p>
-
+            <p className={'font-bold text-teal-600 text-xl p-5'}>Selected Trade Value: {selectedStock.price * shares}</p>
             <br/>
             <button onClick={() => {
               setShares(1);
