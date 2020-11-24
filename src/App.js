@@ -20,7 +20,7 @@ const STOCK_PRICES = [
 
 //Basic Project Complete - 
 // need to style
-// IDEAS - Add Line by current selected stock "current selected trade" - conditional formatting to display in red if the trade value> cash available
+// Make the Button in your portfolio function as "get Quote"
 // IDEAS - Implement the API to pull all stocks instead of just our three 
 // IDEAS - Implement log in features and save each users portfolio
 // IDEAS - Implement share price tracking ("portfolio[i].purchase price") which we can then use to display net gain/loss
@@ -312,7 +312,7 @@ function App() {
              
              <ul className="list-group">
              {portfolio.map(function(portfolio){                
-                    return <li className='font-bold text-teal-600 text-l p-2'>{portfolio.stock + "  Share Price:  " + portfolio.price + "  Shares:  " +portfolio.shares + " Holding: " +portfolio.price*portfolio.shares}</li>;
+                    return <li className='font-bold text-teal-600 text-l p-2'><button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} >{portfolio.stock}</button>{"  Share Price:  " + portfolio.price + "  Shares:  " +portfolio.shares + " Holding: " +portfolio.price*portfolio.shares}</li>;
                   })}
              </ul>
             
