@@ -248,7 +248,7 @@ function App() {
 
       <div className="grid grid-cols-12 gap-0 xl:p-20">
 
-        <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-teal-500 p-20'}>
+        <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-teal-500 p-10 rounded'}>
 
           <h1 className={'font-bold text-2xl text-teal-600'}>Cash Available : {cash}</h1>
 
@@ -302,7 +302,7 @@ function App() {
 
         </div>
         {/*<pre>{JSON.stringify(portfolio)}</pre>*/}
-        <div className={'col-span-12 md:col-span-5 border-4 border-teal-500'}>
+        <div className={'col-span-12 md:col-span-5 border-4 border-teal-500 rounded padding p-5'}>
    
             
             <h1 className={'font-bold text-2xl text-teal-600 p-5'}>Here is Your Portfolio :</h1>

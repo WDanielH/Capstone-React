@@ -1,4 +1,6 @@
 .App {
+  background: rgb(250,243,221);
+  background: radial-gradient(circle, rgba(250,243,221,1) 0%, rgba(199,249,204,0.2721463585434174) 16%, rgba(174,217,224,1) 100%);
   text-align: center;
 }
 
@@ -7,6 +9,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 
 .App-header {
   background-color: #282c34;
