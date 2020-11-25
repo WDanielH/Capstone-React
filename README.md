@@ -1,3 +1,26 @@
+Welcome to the read me for my react Project.
+
+The purpose of this project is to illustrate my ability to build simple sites using react.
+
+This particular site is a simple stock trading site. You simply type the name of a stock in, press Get Quote and the stock's price populates.
+From there you select a quantity of shares and opt to buy or sell them.
+Your portfolio populates on the right.
+
+Currently the site uses a hardcoded list of stocks (AAPL INTL MSFT) to illustrate the functionality -- in the future I will update the site to use an actual trading API just to show I can work with multiple APIs.
+
+There is some logic implented on the site such as making sure you have enough cash to buy the selected shares or enough shares to sell them back. There are some nice visual cues that make the site feel more responsive than my prior work such as the selected shares button giving a visual clue and the buy button greying out when you are considering a trade for which you do not have enough cash. 
+
+Ideas for future implementation 
+
+1) As noted above use an actual stock trading api to pull all stocks with real time data.
+2) build the site up to store when you purchased the stocks to track gains and losses so you have something of a stock simulator
+3) build out log ins so you can have multiple "players" and store their portfolio
+4) some quality of life items such as being able to click on a stock in your portfolio to "get quote" rather than search again for a stock you already hold.
+5) Currently the search function wont put AAPL unless you get the case correct. This is an easy fix but since I will be implementing the API soon I left it as it is currently.
+6) Clean up the code -- there are currently quite a few lines of code representing things I will be adding to the site in the future. Rather than remove everything I am not using only to reimplement it in a few weeks I left more commented out code than I normally would on a portfolio project.
+
+Credit to https://cssgradient.io/ and https://coolors.co/ for their tools which make picking colors and setting up gradients for the background so much easier! 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
