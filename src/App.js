@@ -338,16 +338,16 @@ function App() {
 
 
 
+    {/*}            
+      <header className="App-header">
 
-      {/*<header className="App-header">*/}
+       <NavBar firstName={'John'} lastName={'Doe'} aFunctionProp={receiveInfoFromChild}   />
 
-      {/*  <NavBar firstName={'John'} lastName={'Doe'} aFunctionProp={receiveInfoFromChild}   />*/}
-
-      {/*  <form onSubmit={onFormSubmit}>*/}
-      {/*    <input type="text" onChange={runOnInputChange} value={inputText}/>*/}
-      {/*    <input type="submit"/>*/}
-      {/*  </form>*/}
-
+       <form onSubmit={onFormSubmit}>
+         <input type="text" onChange={runOnInputChange} value={inputText}/>
+         <input type="submit"/>
+        </form>
+      */}
 
 
 

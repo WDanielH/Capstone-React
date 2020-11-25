@@ -9,31 +9,21 @@ function NavBar(props) {
         props.aFunctionProp('Jane');
     };
 
-    const navBarItems = ['Home', 'About', 'Docs', 'Contact'];
+    const navBarItems = ['Home', 'Portfolio', 'Charts', 'Document','Logout'];
 
     return (
         <>
 
-            {/*{navBarItems.map((oneItem) => {*/}
-            {/*    return <NavBarItem key={oneItem} item={oneItem} />*/}
-            {/*})}*/}
-
-
-
-
-            <ul style={{listStyle: 'none'}}>
+                <ul style={{listStyle: 'none'}}>
                 {navBarItems.map((oneItem) => {
                     return <NavBarItem key={oneItem} item={oneItem} />
                 })}
 
-                {/*<li style={{display: 'inline', padding:'10px'}}>Home</li>*/}
-                {/*<li style={{display: 'inline', padding:'10px'}}>About</li>*/}
-                {/*<li style={{display: 'inline', padding:'10px'}}>Docs</li>*/}
-                {/*<li style={{display: 'inline', padding:'10px'}}>Contact</li>*/}
+               
             </ul>
 
 
-            <h1 onClick={sendInfoBacktoParent}>This is the nav bar component!</h1>
+            {/*<h1 onClick={sendInfoBacktoParent}>This is the nav bar component!</h1>*/}
 
             {props.firstName} {props.lastName}
 
