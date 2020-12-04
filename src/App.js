@@ -36,6 +36,8 @@ function App() {
 
   const [selectedStock, setSelectedStock] = useState();
 
+  const [allDogs, setAllDogs] = useState([]);
+
   // useEffect(() => {
   //   yahooFinance.quote({
   //     symbol: 'AAPL',
@@ -46,6 +48,20 @@ function App() {
   //     console.log(quotes)
   //   });
   // }, [])
+
+
+  useEffect(() => {
+
+    let fetchDogFunc = async () => {
+      let res = await fetch('http://localhost:3000/api/dogs');
+      let dogs = await res.json();
+      setAllDogs(dogs);
+      // console.log(allDogs);
+    }
+
+    fetchDogFunc();
+
+  }, [])
 
   useEffect(() => {
     console.log('this runs when the name changes');
@@ -135,6 +151,26 @@ function App() {
     <div className="App">
 
 
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <h1 className={'text-3xl'}>All the dogs in the database</h1>
+
+      <ul>
+        {allDogs.map((dog) => {
+          return <li key={dog.id}>
+            id: {dog.id}. &nbsp;&nbsp;&nbsp;
+            {dog.name}
+            &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}>Delete this dog</button>
+          </li>
+        })}
+      </ul>
+
+
+
+
+
 
 
       {/*Below is the flexbox way to design the page using tailwind*/}
@@ -164,68 +200,68 @@ function App() {
       {/*below is the css grid way of designing the page*/}
 
 
-      <div className="grid grid-cols-12 gap-0 xl:p-20">
+      {/*<div className="grid grid-cols-12 gap-0 xl:p-20">*/}
 
-        <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-red-500 p-20'}>
+      {/*  <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-red-500 p-20'}>*/}
 
-          <h1 className={'font-bold text-2xl text-teal-600'}>Cash Available : {cash}</h1>
+      {/*    <h1 className={'font-bold text-2xl text-teal-600'}>Cash Available : {cash}</h1>*/}
 
-          <br/>
+      {/*    <br/>*/}
 
-          <hr/>
+      {/*    <hr/>*/}
 
-          <br/>
+      {/*    <br/>*/}
 
-          <input className={'border'} type={'text'}
-                 onChange={onInputChange}
-                 value={searchStockStr} />
+      {/*    <input className={'border'} type={'text'}*/}
+      {/*           onChange={onInputChange}*/}
+      {/*           value={searchStockStr} />*/}
 
-          &nbsp;&nbsp;<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={getQuote}>Get Quote</button>
-
-
-          {selectedStock && <div>
-            <p className={'font-bold text-teal-600 text-xl p-5'}>Current Selected Stock: {selectedStock.name} | Price: ${selectedStock.price}</p>
-
-            <br/>
-            <button onClick={() => {
-              setShares(1);
-            }} className={shares==1 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>1</button>&nbsp;&nbsp;
-
-            <button onClick={() => {
-              setShares(5);
-            }} className={shares==5 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>5</button>&nbsp;&nbsp;
-
-            <button onClick={() => {
-              setShares(10);
-            }} className={shares==10 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>10</button>&nbsp;&nbsp;
-
-            <button onClick={() => {
-              setShares(15);
-            }} className={shares==15 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>15</button>&nbsp;&nbsp;
-
-            <button onClick={() => {
-              setShares(20);
-            }} className={shares==20 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>20</button>&nbsp;&nbsp;
-            {/*<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>25</button>&nbsp;&nbsp;*/}
-            {/*<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>30</button>&nbsp;&nbsp;*/}
-
-            <br/>
-            <br/>
-            <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={buyStock}>BUY</button>&nbsp;&nbsp;
-            <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>SELL</button>
-
-          </div>}
+      {/*    &nbsp;&nbsp;<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={getQuote}>Get Quote</button>*/}
 
 
+      {/*    {selectedStock && <div>*/}
+      {/*      <p className={'font-bold text-teal-600 text-xl p-5'}>Current Selected Stock: {selectedStock.name} | Price: ${selectedStock.price}</p>*/}
 
-        </div>
+      {/*      <br/>*/}
+      {/*      <button onClick={() => {*/}
+      {/*        setShares(1);*/}
+      {/*      }} className={shares==1 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>1</button>&nbsp;&nbsp;*/}
 
-        <div className={'col-span-12 md:col-span-5 border-4 border-gray-900'}>
-          this is a portfolio box
+      {/*      <button onClick={() => {*/}
+      {/*        setShares(5);*/}
+      {/*      }} className={shares==5 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>5</button>&nbsp;&nbsp;*/}
 
-        </div>
+      {/*      <button onClick={() => {*/}
+      {/*        setShares(10);*/}
+      {/*      }} className={shares==10 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>10</button>&nbsp;&nbsp;*/}
 
-      </div>
+      {/*      <button onClick={() => {*/}
+      {/*        setShares(15);*/}
+      {/*      }} className={shares==15 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>15</button>&nbsp;&nbsp;*/}
+
+      {/*      <button onClick={() => {*/}
+      {/*        setShares(20);*/}
+      {/*      }} className={shares==20 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>20</button>&nbsp;&nbsp;*/}
+      {/*      /!*<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>25</button>&nbsp;&nbsp;*!/*/}
+      {/*      /!*<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>30</button>&nbsp;&nbsp;*!/*/}
+
+      {/*      <br/>*/}
+      {/*      <br/>*/}
+      {/*      <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={buyStock}>BUY</button>&nbsp;&nbsp;*/}
+      {/*      <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>SELL</button>*/}
+
+      {/*    </div>}*/}
+
+
+
+      {/*  </div>*/}
+
+      {/*  <div className={'col-span-12 md:col-span-5 border-4 border-gray-900'}>*/}
+      {/*    this is a portfolio box*/}
+
+      {/*  </div>*/}
+
+      {/*</div>*/}
 
 
 
