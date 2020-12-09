@@ -38,6 +38,14 @@ function App() {
 
   const [allDogs, setAllDogs] = useState([]);
 
+  const [allQuestions, setAllQuestions] = useState([]);
+
+  const [newQuestionText, setNewQuestionText] = useState();
+  const [newQuestionAnswerOne, setNewQuestionAnswerOne] = useState();
+  const [newQuestionAnswerTwo, setNewQuestionAnswerTwo] = useState();
+  const [newQuestionAnswerThree, setNewQuestionAnswerThree] = useState();
+  const [newQuestionAnswerFour, setNewQuestionAnswerFour] = useState();
+
   // useEffect(() => {
   //   yahooFinance.quote({
   //     symbol: 'AAPL',
@@ -50,16 +58,25 @@ function App() {
   // }, [])
 
 
+  let fetchQuestions = async () => {
+    let res = await fetch('http://localhost:3000/api/questions');
+    let questions = await res.json();
+    setAllQuestions(questions);
+    // console.log(allDogs);
+  }
+
+
   useEffect(() => {
 
-    let fetchDogFunc = async () => {
-      let res = await fetch('http://localhost:3000/api/dogs');
-      let dogs = await res.json();
-      setAllDogs(dogs);
-      // console.log(allDogs);
-    }
-
-    fetchDogFunc();
+    // let fetchDogFunc = async () => {
+    //   let res = await fetch('http://localhost:3000/api/dogs');
+    //   let dogs = await res.json();
+    //   setAllDogs(dogs);
+    //   // console.log(allDogs);
+    // }
+    //
+    // fetchDogFunc();
+    fetchQuestions();
 
   }, [])
 
@@ -147,6 +164,32 @@ function App() {
 
   };
 
+  const createNewQuestion = async (event) => {
+    event.preventDefault();
+    console.log('was here')
+    console.log(newQuestionText)
+    console.log(newQuestionAnswerOne)
+    console.log(newQuestionAnswerTwo)
+    console.log(newQuestionAnswerThree)
+    console.log(newQuestionAnswerFour)
+
+    let body = JSON.stringify({
+      questionText: newQuestionText,
+      answerOne: newQuestionAnswerOne,
+      answerTwo: newQuestionAnswerTwo,
+      answerThree: newQuestionAnswerThree,
+      answerFour: newQuestionAnswerFour,
+    })
+
+    let headers = {};
+    headers["Accept"] = "application/json, text/plain, */*";
+    headers["Content-Type"] = "application/json;charset=utf-8";
+
+    await fetch('http://localhost:3000/api/questions', {method: 'POST', body: body, headers: headers});
+    await fetchQuestions();
+
+  };
+
   return (
     <div className="App">
 
@@ -155,17 +198,71 @@ function App() {
       <br/>
       <br/>
       <br/>
-      <h1 className={'text-3xl'}>All the dogs in the database</h1>
+      {/*<h1 className={'text-3xl'}>All the dogs in the database</h1>*/}
+
+
+      <h1 className={'text-3xl'}>Create a new question</h1>
+
+      <form action="" onSubmit={createNewQuestion}>
+        <label htmlFor="">Question Text</label>
+        <br/>
+        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+          setNewQuestionText(ev.currentTarget.value);
+        }}/>
+        <br/>
+        <label htmlFor="">Answer One</label>
+        <br/>
+        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+          setNewQuestionAnswerOne(ev.currentTarget.value);
+        }}/>
+        <br/>
+        <label htmlFor="">Answer Two</label>
+        <br/>
+        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+          setNewQuestionAnswerTwo(ev.currentTarget.value);
+        }}/>
+        <br/>
+        <label htmlFor="">Answer Three</label>
+        <br/>
+        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+          setNewQuestionAnswerThree(ev.currentTarget.value);
+        }}/>
+        <br/>
+        <label htmlFor="">Answer Four</label>
+        <br/>
+        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+          setNewQuestionAnswerFour(ev.currentTarget.value);
+        }}/>
+        <br/>
+        <br/>
+        <input type="submit"/>
+      </form>
+
+
+      <h1 className={'text-3xl'}>All the questions in the database</h1>
+
 
       <ul>
-        {allDogs.map((dog) => {
-          return <li key={dog.id}>
-            id: {dog.id}. &nbsp;&nbsp;&nbsp;
-            {dog.name}
-            &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}>Delete this dog</button>
+        {allQuestions.map((question) => {
+          return <li key={question.id}>
+            id: {question.id}. &nbsp;&nbsp;&nbsp;
+            {question.questionText}
+            &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}>Delete this Question</button>
           </li>
         })}
       </ul>
+
+
+
+      {/*<ul>*/}
+      {/*  {allDogs.map((dog) => {*/}
+      {/*    return <li key={dog.id}>*/}
+      {/*      id: {dog.id}. &nbsp;&nbsp;&nbsp;*/}
+      {/*      {dog.name}*/}
+      {/*      &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}>Delete this dog</button>*/}
+      {/*    </li>*/}
+      {/*  })}*/}
+      {/*</ul>*/}
 
 
 
