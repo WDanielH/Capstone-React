@@ -46,6 +46,8 @@ function App() {
   const [newQuestionAnswerThree, setNewQuestionAnswerThree] = useState();
   const [newQuestionAnswerFour, setNewQuestionAnswerFour] = useState();
 
+  const [currentCategory, setCurrentCategory] = useState();
+
   // useEffect(() => {
   //   yahooFinance.quote({
   //     symbol: 'AAPL',
@@ -179,6 +181,7 @@ function App() {
       answerTwo: newQuestionAnswerTwo,
       answerThree: newQuestionAnswerThree,
       answerFour: newQuestionAnswerFour,
+      category: currentCategory
     })
 
     let headers = {};
@@ -201,56 +204,127 @@ function App() {
       {/*<h1 className={'text-3xl'}>All the dogs in the database</h1>*/}
 
 
-      <h1 className={'text-3xl'}>Create a new question</h1>
+      <h1 className={'text-3xl'}>Categories</h1>
 
-      <form action="" onSubmit={createNewQuestion}>
-        <label htmlFor="">Question Text</label>
-        <br/>
-        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-          setNewQuestionText(ev.currentTarget.value);
-        }}/>
-        <br/>
-        <label htmlFor="">Answer One</label>
-        <br/>
-        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-          setNewQuestionAnswerOne(ev.currentTarget.value);
-        }}/>
-        <br/>
-        <label htmlFor="">Answer Two</label>
-        <br/>
-        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-          setNewQuestionAnswerTwo(ev.currentTarget.value);
-        }}/>
-        <br/>
-        <label htmlFor="">Answer Three</label>
-        <br/>
-        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-          setNewQuestionAnswerThree(ev.currentTarget.value);
-        }}/>
-        <br/>
-        <label htmlFor="">Answer Four</label>
-        <br/>
-        <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-          setNewQuestionAnswerFour(ev.currentTarget.value);
-        }}/>
-        <br/>
-        <br/>
-        <input type="submit"/>
-      </form>
-
-
-      <h1 className={'text-3xl'}>All the questions in the database</h1>
-
+      Value for the current category is: {currentCategory}
 
       <ul>
-        {allQuestions.map((question) => {
-          return <li key={question.id}>
-            id: {question.id}. &nbsp;&nbsp;&nbsp;
-            {question.questionText}
-            &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}>Delete this Question</button>
-          </li>
-        })}
+        <li>
+          {/*<button className={'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'}>Category 1</button>*/}
+          <button className={currentCategory==1
+              ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
+              : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
+            setCurrentCategory(1)
+          }}>Category 1</button>
+        </li>
+        <li>
+          <br/>
+          <br/>
+          <button className={currentCategory==2
+              ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
+              : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
+            setCurrentCategory(2)
+          }}>Category 2</button>
+        </li>
+        <li>
+          <br/>
+          <br/>
+          <button className={currentCategory==3
+              ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
+              : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
+            setCurrentCategory(3)
+          }}>Category 3</button>
+        </li>
+        <li>
+          <br/>
+          <br/>
+          <button className={currentCategory==4
+              ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
+              : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
+            setCurrentCategory(4)
+          }}>Category 4</button>
+        </li>
+        <li>
+          <br/>
+          <br/>
+          <button className={currentCategory==5
+              ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
+              : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
+            setCurrentCategory(5)
+          }}>Category 5</button>
+        </li>
       </ul>
+
+
+
+      {currentCategory && <div>
+
+        <h1 className={'text-3xl'}>Create a new question</h1>
+
+        <form action="" onSubmit={createNewQuestion}>
+          <label htmlFor="">Question Text</label>
+          <br/>
+          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+            setNewQuestionText(ev.currentTarget.value);
+          }}/>
+          <br/>
+          <label htmlFor="">Answer One</label>
+          <br/>
+          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+            setNewQuestionAnswerOne(ev.currentTarget.value);
+          }}/>
+          <br/>
+          <label htmlFor="">Answer Two</label>
+          <br/>
+          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+            setNewQuestionAnswerTwo(ev.currentTarget.value);
+          }}/>
+          <br/>
+          <label htmlFor="">Answer Three</label>
+          <br/>
+          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+            setNewQuestionAnswerThree(ev.currentTarget.value);
+          }}/>
+          <br/>
+          <label htmlFor="">Answer Four</label>
+          <br/>
+          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+            setNewQuestionAnswerFour(ev.currentTarget.value);
+          }}/>
+          <br/>
+          <br/>
+          <input type="submit"/>
+        </form>
+
+
+      </div>}
+
+
+
+      <br/>
+      <br/>
+      <hr/>
+      <br/>
+      <br/>
+
+      {currentCategory && <div>
+
+        <h1 className={'text-3xl'}>Questions for the category: {currentCategory}</h1>
+        <ul>
+          {allQuestions.map((question) => {
+            if(question.category == currentCategory){
+              return <li key={question.id}>
+                id: {question.id}. &nbsp;&nbsp;&nbsp;
+                {question.questionText}
+                &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}>Delete this Question</button>
+              </li>
+            }
+
+          })}
+        </ul>
+
+      </div>}
+
 
 
 
