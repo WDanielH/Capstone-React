@@ -8,32 +8,14 @@ import NavBar from "./NavBar";
 
 function App() {
 
-  
-
   const [inputText, setInputText] = useState('');
-
-  
-
   const [allQuestions, setAllQuestions] = useState([]);
-
   const [newQuestionText, setNewQuestionText] = useState();
   const [newQuestionAnswerOne, setNewQuestionAnswerOne] = useState();
   const [newQuestionAnswerTwo, setNewQuestionAnswerTwo] = useState();
   const [newQuestionAnswerThree, setNewQuestionAnswerThree] = useState();
   const [newQuestionAnswerFour, setNewQuestionAnswerFour] = useState();
-
   const [currentCategory, setCurrentCategory] = useState();
-
-  // useEffect(() => {
-  //   yahooFinance.quote({
-  //     symbol: 'AAPL',
-  //     // modules: [ 'price', 'summaryDetail' ] // see the docs for the full list
-  //     modules: [ 'price']
-  //   }, function (err, quotes) {
-  //     console.log(err)
-  //     console.log(quotes)
-  //   });
-  // }, [])
 
 
   let fetchQuestions = async () => {
@@ -43,27 +25,13 @@ function App() {
     // console.log(allDogs);
   }
 
-
   useEffect(() => {
 
-    // let fetchDogFunc = async () => {
-    //   let res = await fetch('http://localhost:3000/api/dogs');
-    //   let dogs = await res.json();
-    //   setAllDogs(dogs);
-    //   // console.log(allDogs);
-    // }
-    //
-    // fetchDogFunc();
-    fetchQuestions();
+  fetchQuestions();
 
   }, [])
 
-  
-
-
-
-
-  const receiveInfoFromChild = async (info) => {
+   const receiveInfoFromChild = async (info) => {
     console.log(info);
   };
 
@@ -84,11 +52,6 @@ function App() {
   };
 
   
-
-  
-
-  
-
   const createNewQuestion = async (event) => {
     event.preventDefault();
     console.log('was here')
@@ -120,25 +83,34 @@ function App() {
     <div className="App">
 
 
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      {/*<h1 className={'text-3xl'}>All the dogs in the database</h1>*/}
+     {/*<h1 className={'text-3xl'}>All the dogs in the database</h1>*/}
 
+     <div class="App-header">
+      <h1 className={'text-3xl'}>Super Nerd Trivia</h1>
+      <p>Select a Category on the left to see and add questions</p>
+   
+    </div>
+
+      
+      <br/>
       <div class="categories">
-      <h1 className={'text-3xl'}>Categories</h1>
+      {/*<h1 className={'text-3xl'}>Categories</h1>*/}
 
-      Value for the current category is: {currentCategory}
-
+      {/*Value for the current category is: {currentCategory}*/}
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <ul>
         <li>
-          {/*<button className={'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'}>Category 1</button>*/}
+          {/*<button className={'bg-gray-300 p-1 border border-gray-400 rounded cursor-pointer'}>Category 1</button>*/}
           <button className={currentCategory==1
               ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
               : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
             setCurrentCategory(1)
-          }}>Category 1</button>
+          }}>Chemistry</button>
         </li>
         <li>
           <br/>
@@ -147,7 +119,7 @@ function App() {
               ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
               : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
             setCurrentCategory(2)
-          }}>Category 2</button>
+          }}>Dinosaurs</button>
         </li>
         <li>
           <br/>
@@ -156,7 +128,7 @@ function App() {
               ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
               : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
             setCurrentCategory(3)
-          }}>Category 3</button>
+          }}>Star Wars</button>
         </li>
         <li>
           <br/>
@@ -165,7 +137,7 @@ function App() {
               ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
               : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
             setCurrentCategory(4)
-          }}>Category 4</button>
+          }}>Video Games</button>
         </li>
         <li>
           <br/>
@@ -174,61 +146,11 @@ function App() {
               ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
               : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
             setCurrentCategory(5)
-          }}>Category 5</button>
+          }}>Web Development</button>
         </li>
       </ul>
       </div>
 
-
-      {currentCategory && <div>
-
-        <h1 className={'text-3xl'}>Create a new question</h1>
-
-        <form action="" onSubmit={createNewQuestion}>
-          <label htmlFor="">Question Text</label>
-          <br/>
-          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-            setNewQuestionText(ev.currentTarget.value);
-          }}/>
-          <br/>
-          <label htmlFor="">Answer One</label>
-          <br/>
-          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-            setNewQuestionAnswerOne(ev.currentTarget.value);
-          }}/>
-          <br/>
-          <label htmlFor="">Answer Two</label>
-          <br/>
-          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-            setNewQuestionAnswerTwo(ev.currentTarget.value);
-          }}/>
-          <br/>
-          <label htmlFor="">Answer Three</label>
-          <br/>
-          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-            setNewQuestionAnswerThree(ev.currentTarget.value);
-          }}/>
-          <br/>
-          <label htmlFor="">Answer Four</label>
-          <br/>
-          <input type="text" className={'border border-gray-400'} onChange={(ev) => {
-            setNewQuestionAnswerFour(ev.currentTarget.value);
-          }}/>
-          <br/>
-          <br/>
-          <input type="submit"/>
-        </form>
-
-
-      </div>}
-
-
-
-      <br/>
-      <br/>
-      <hr/>
-      <br/>
-      <br/>
 
       {currentCategory && <div>
 
@@ -247,6 +169,51 @@ function App() {
         </ul>
 
       </div>}
+
+      {currentCategory && <div>
+
+
+        <hr/>
+
+<h1 className={'text-3xl'}>Create a new question</h1>
+
+<form action="" onSubmit={createNewQuestion}>
+  <label htmlFor="">Question Text</label>
+  <br/>
+  <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+    setNewQuestionText(ev.currentTarget.value);
+  }}/>
+  <br/>
+  <label htmlFor="">Answer One</label>
+  <br/>
+  <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+    setNewQuestionAnswerOne(ev.currentTarget.value);
+  }}/>
+  <br/>
+  <label htmlFor="">Answer Two</label>
+  <br/>
+  <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+    setNewQuestionAnswerTwo(ev.currentTarget.value);
+  }}/>
+  <br/>
+  <label htmlFor="">Answer Three</label>
+  <br/>
+  <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+    setNewQuestionAnswerThree(ev.currentTarget.value);
+  }}/>
+  <br/>
+  <label htmlFor="">Answer Four</label>
+  <br/>
+  <input type="text" className={'border border-gray-400'} onChange={(ev) => {
+    setNewQuestionAnswerFour(ev.currentTarget.value);
+  }}/>
+  <br/>
+  <br/>
+  <input type="submit"/>
+</form>
+
+
+</div>}
 
 
 
