@@ -207,7 +207,7 @@ function App() {
       <br/>
       {/*<h1 className={'text-3xl'}>All the dogs in the database</h1>*/}
 
-
+      <div class="categories">
       <h1 className={'text-3xl'}>Categories</h1>
 
       Value for the current category is: {currentCategory}
@@ -258,7 +258,7 @@ function App() {
           }}>Category 5</button>
         </li>
       </ul>
-
+      </div>
 
 
       {currentCategory && <div>
