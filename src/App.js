@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 
 
 // getting started
-
+//test 
 
 // var yahooFinance = require('yahoo-finance');
 
