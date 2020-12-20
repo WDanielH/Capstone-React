@@ -4,6 +4,10 @@ import './App.css';
 // import './Tailwind.css';
 import NavBar from "./NavBar";
 
+
+// getting started
+
+
 // var yahooFinance = require('yahoo-finance');
 
 // useState
