@@ -5,42 +5,14 @@ import './App.css';
 import NavBar from "./NavBar";
 
 
-// getting started
-//test 
-
-// var yahooFinance = require('yahoo-finance');
-
-// useState
-// useEffect
-// Child components
-// Relationship beween parent and child + Props
-// Forms in React
-
-const STOCK_PRICES = [
-    {name: 'AAPL', price: '120'},
-  {name: 'MSFT', price: '110'},
-  {name: 'INTL', price: '80'}
-]
-
 
 function App() {
 
-  const [name, setName] = useState('John');
-  const [showJaneText, setJaneShowText] = useState(false);
+  
 
   const [inputText, setInputText] = useState('');
 
-  const [counter, setCounter] = useState(0);
-
-  const [cash, setCash] = useState(100000);
-
-  const [searchStockStr, setSearchStockStr] = useState('');
-
-  const [shares, setShares] = useState('1');
-
-  const [selectedStock, setSelectedStock] = useState();
-
-  const [allDogs, setAllDogs] = useState([]);
+  
 
   const [allQuestions, setAllQuestions] = useState([]);
 
@@ -86,37 +58,10 @@ function App() {
 
   }, [])
 
-  useEffect(() => {
-    console.log('this runs when the name changes');
-    if(name == 'Jane'){
-      setJaneShowText(true);
-    }
-    // (name=='Jane' && setJaneShowText(true))
-  }, [name]);
-
-  useEffect(() => {
-    console.log('this code is run when the counter value changes')
-    if(counter==10){
-      alert('The counter is at 10!');
-    }
-    if(counter==20){
-      alert('The counter is at 20!');
-    }
-  }, [counter]);
-
-  const changeName = () => {
-    console.log('change name is being called');
-    setName('Jane');
-  };
-
-  const updateCounter = () => {
-    let currentValue = counter;
-    currentValue = currentValue + 1;
-    setCounter(currentValue);
+  
 
 
-    // instead of writing code on counter change here
-  };
+
 
   const receiveInfoFromChild = async (info) => {
     console.log(info);
@@ -138,37 +83,11 @@ function App() {
 
   };
 
-  const getQuote = async () => {
-    let stock;
-    STOCK_PRICES.map((s) => {
-      if(s.name == searchStockStr){
-        stock = s;
-      }
-    })
+  
 
-    // console.log(stock);
+  
 
-    setSelectedStock(stock);
-
-    console.log('get quote was clicked! and the value of the search string is: ', searchStockStr);
-    setSearchStockStr('');
-  };
-
-  const onInputChange = async (event) => {
-    // console.log(event.currentTarget.value);
-    setSearchStockStr(event.currentTarget.value);
-  };
-
-  // const updateShares = async () => {
-  //
-  // };
-
-  const buyStock = async () => {
-    console.log('The user wants to buy ', shares , ' quantity ', ' of ',  selectedStock.name ,  ' at ', selectedStock.price);
-    let cost = shares * selectedStock.price;
-    console.log('the cost is: ', cost);
-
-  };
+  
 
   const createNewQuestion = async (event) => {
     event.preventDefault();
