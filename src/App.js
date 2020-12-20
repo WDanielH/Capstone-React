@@ -5,6 +5,14 @@ import './App.css';
 import NavBar from "./NavBar";
 
 
+// to do list:
+// functionality: 
+// -- implement the delete button 
+
+// -- implement the right answer with visual que 
+// styling:
+// -- Make it look better! -- pictures for the category? clear the question boxes on submit
+
 
 function App() {
 
@@ -79,6 +87,22 @@ function App() {
 
   };
 
+  /*
+  async deletePost(post) {
+    if (window.confirm(`Are you sure you want to delete "${post.title}"`)) {
+      await this.fetch('delete', `/posts/${post.id}`);
+      this.getPosts();
+    }
+  }
+ */
+  const deleteQuestion = async (event) => {
+    
+
+    await fetch('http://localhost:3000/api/questions:ID', {method: 'DELETE'});
+    await fetchQuestions();
+
+  };
+
   return (
     <div className="App">
 
@@ -102,9 +126,10 @@ function App() {
       <br/>
       <br/>
       <br/>
-      <br/>
+  
       <ul>
         <li>
+          
           {/*<button className={'bg-gray-300 p-1 border border-gray-400 rounded cursor-pointer'}>Category 1</button>*/}
           <button className={currentCategory==1
               ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
@@ -154,14 +179,23 @@ function App() {
 
       {currentCategory && <div>
 
-        <h1 className={'text-3xl'}>Questions for the category: {currentCategory}</h1>
+        <h1 className={'text-3xl'}>Current Questions</h1>
         <ul>
           {allQuestions.map((question) => {
             if(question.category == currentCategory){
               return <li key={question.id}>
                 id: {question.id}. &nbsp;&nbsp;&nbsp;
                 {question.questionText}
-                &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}>Delete this Question</button>
+                
+                
+                &nbsp;&nbsp;&nbsp; ANSWERS:
+                &nbsp;A:&nbsp;<button className={'border p-1 bg-gray-300'}>{question.answerOne}</button>&nbsp;&nbsp;&nbsp;
+                &nbsp;B:&nbsp;<button className={'border p-1 bg-gray-300'}>{question.answerTwo}</button>&nbsp;&nbsp;&nbsp;
+                &nbsp;C:&nbsp;<button className={'border p-1 bg-gray-300'}>{question.answerThree}</button>&nbsp;&nbsp;&nbsp;
+                &nbsp;D:&nbsp;<button className={'border p-1 bg-gray-300'}>{question.answerFour}</button>&nbsp;&nbsp;&nbsp;
+          
+    
+                &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}onClick={() => {deleteQuestion(question.id)}}>Delete</button>
               </li>
             }
 
@@ -175,7 +209,7 @@ function App() {
 
         <hr/>
 
-<h1 className={'text-3xl'}>Create a new question</h1>
+<h1 className={'text-3xl'}>Add A Question</h1>
 
 <form action="" onSubmit={createNewQuestion}>
   <label htmlFor="">Question Text</label>
