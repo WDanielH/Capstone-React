@@ -26,6 +26,20 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState();
 
 
+  async function deleteQuestion (question){
+    console.log("delete")
+    
+  //console.log(question)
+    await fetch('http://localhost:3000/api/questions/'+question.id,{method: 'DELETE'})
+    let res = await fetch('http://localhost:3000/api/questions');
+    let questions = await res.json();
+    setAllQuestions(questions);
+    //let questions = await res.json();
+    //setAllQuestions(questions);
+    //.then(response => response.json());
+    
+  }
+
   let fetchQuestions = async () => {
     let res = await fetch('http://localhost:3000/api/questions');
     let questions = await res.json();
@@ -94,7 +108,41 @@ function App() {
       this.getPosts();
     }
   }
- */
+ 
+
+let fetchQuestions = async () => {
+  let res = await fetch('http://localhost:3000/api/questions');
+  let questions = await res.json();
+  setAllQuestions(questions);
+  // console.log(allDogs);
+}
+
+
+async remove(id) {
+  await fetch(`/api/customer/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(() => {
+    let updatedCustomers = [...this.state.customers].filter(i => i.id !== id);
+    this.setState({customers: updatedCustomers});
+  });
+}
+
+
+let deleteQuestion = async (question) =>{
+  //console.log("delete")
+console.log(question)
+  await fetch('http://localhost:3000/api/questions/${question.id}',{method: 'DELETE'});
+}
+*/
+
+
+
+
+/*
   const deleteQuestion = async (event) => {
     
 
@@ -102,7 +150,7 @@ function App() {
     await fetchQuestions();
 
   };
-
+*/
   return (
     <div className="App">
 
@@ -195,7 +243,7 @@ function App() {
                 &nbsp;D:&nbsp;<button className={'border p-1 bg-gray-300'}>{question.answerFour}</button>&nbsp;&nbsp;&nbsp;
           
     
-                &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}onClick={() => {deleteQuestion(question.id)}}>Delete</button>
+                &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}onClick={() => {deleteQuestion(question)}}>Delete</button>
               </li>
             }
 
