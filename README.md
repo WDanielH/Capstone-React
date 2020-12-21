@@ -1,3 +1,20 @@
+Welcome to the readme for Project 5!
+
+This project is designed to illustrate that I can infact work a full stack of technologies.
+
+It runs a react front end, express back end, and MySQL (and sequelize) for the database.
+
+It is a pretty straight forward quiz app. The user and read, add, and delete trivia questions to one of five categories.
+
+I have some additional functionality I am excited to add but frankly didn't have as much time as I expected to get things finished.
+
+I would like to add:
+1) a log in system with user registration -- questions will then be tagged with who created them, there will be levels of users as well -- not everyone can add or delete questions some will only be able to play the game -- once the game aspect is implemented.
+2) I made the answers buttons so that the user could guess the answer by clicking them. this isnt currently impletemented - it would be pretty easy, just add a "correct answer" drop down and store that value. The answer buttons will have an onclick color change (green if the user guessed the right one, red otherwise)
+3) I would also like to implement a scoring system -- this one is a little more complex I think it would involve giving the user table a list of questions the user has answered before.
+4) Obviously there is plenty of styling I'd like to do -- There are some on theme animated backgrounds -- I'd love to see the app backgrounds mimic the categories (space for star wars, code for web developement -- etc)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
