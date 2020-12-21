@@ -106,6 +106,7 @@ function App() {
      {/*<h1 className={'text-3xl'}>All the dogs in the database</h1>*/}
 
      <div class="App-header">
+       <br/>
       <h1 className={'text-3xl'}>Super Nerd Trivia</h1>
       <p>Select a Category on the left to see and add questions</p>
    
@@ -124,7 +125,7 @@ function App() {
       <ul>
         <li>
           
-
+          <br/>
           <button className={currentCategory==1
               ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
               : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
