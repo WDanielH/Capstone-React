@@ -23,18 +23,20 @@ function App() {
   const [newQuestionAnswerFour, setNewQuestionAnswerFour] = useState();
   const [currentCategory, setCurrentCategory] = useState();
 
-
+// this will delete a question -- it calls the delete method and then fetchs the questions from the api
   async function deleteQuestion (question){
        await fetch('http://localhost:3000/api/questions/'+question.id,{method: 'DELETE'})
        // this took a minute -- just deleting the item doesnt let react know to update state so it wasnt actually clearing the question from the browser until I did something else.
        // re-fetching the questions did the trick
-    let res = await fetch('http://localhost:3000/api/questions');
-    let questions = await res.json();
-    setAllQuestions(questions);
+    //let res = await fetch('http://localhost:3000/api/questions');
+    //let questions = await res.json();
+    //setAllQuestions(questions);
+    fetchQuestions();
   
     
   }
 
+  // fetches the questions 
   let fetchQuestions = async () => {
     let res = await fetch('http://localhost:3000/api/questions');
     let questions = await res.json();
