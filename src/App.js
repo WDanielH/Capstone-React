@@ -178,7 +178,7 @@ function App() {
           {allQuestions.map((question) => {
             if(question.category == currentCategory){
               return <li key={question.id}>
-                id: {question.id}. &nbsp;&nbsp;&nbsp;
+                
                 {question.questionText}
                 
                 
@@ -202,6 +202,16 @@ function App() {
 
 
         <hr/>
+
+        <div class="rightside">
+
+      <br/>
+      <br/>
+</div>
+        <div class="App-header">
+          <br/>   
+   
+    </div>
 
 <h1 className={'text-3xl'}>Add A Question</h1>
 
@@ -243,7 +253,14 @@ function App() {
 
 </div>}
    
-
+<div class="App-header">
+          <br/>
+          <br/> 
+          <br/> 
+          <br/> 
+          <br/>    
+   
+    </div>
 
     </div>
   );

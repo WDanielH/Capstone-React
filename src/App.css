@@ -24,6 +24,17 @@
   overflow-x: hidden;
 }
 
+.rightside {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color:rgb(61, 55, 55);
+  overflow-x: hidden;
+}
+
 .App-header {
   background-color: rgb(61, 55, 55);
   display: flex;
