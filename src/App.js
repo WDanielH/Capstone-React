@@ -7,8 +7,6 @@ import NavBar from "./NavBar";
 
 // to do list:
 // functionality: 
-// -- implement the delete button 
-
 // -- implement the right answer with visual que 
 // styling:
 // -- Make it look better! -- pictures for the category? clear the question boxes on submit
@@ -27,16 +25,13 @@ function App() {
 
 
   async function deleteQuestion (question){
-    console.log("delete")
-    
-  //console.log(question)
-    await fetch('http://localhost:3000/api/questions/'+question.id,{method: 'DELETE'})
+       await fetch('http://localhost:3000/api/questions/'+question.id,{method: 'DELETE'})
+       // this took a minute -- just deleting the item doesnt let react know to update state so it wasnt actually clearing the question from the browser until I did something else.
+       // re-fetching the questions did the trick
     let res = await fetch('http://localhost:3000/api/questions');
     let questions = await res.json();
     setAllQuestions(questions);
-    //let questions = await res.json();
-    //setAllQuestions(questions);
-    //.then(response => response.json());
+  
     
   }
 
@@ -44,7 +39,7 @@ function App() {
     let res = await fetch('http://localhost:3000/api/questions');
     let questions = await res.json();
     setAllQuestions(questions);
-    // console.log(allDogs);
+    
   }
 
   useEffect(() => {
@@ -58,7 +53,7 @@ function App() {
   };
 
   const runOnInputChange = async (event) => {
-    // console.log(event.currentTarget.value);
+    
     setInputText(event.currentTarget.value);
   };
 
@@ -101,56 +96,7 @@ function App() {
 
   };
 
-  /*
-  async deletePost(post) {
-    if (window.confirm(`Are you sure you want to delete "${post.title}"`)) {
-      await this.fetch('delete', `/posts/${post.id}`);
-      this.getPosts();
-    }
-  }
- 
-
-let fetchQuestions = async () => {
-  let res = await fetch('http://localhost:3000/api/questions');
-  let questions = await res.json();
-  setAllQuestions(questions);
-  // console.log(allDogs);
-}
-
-
-async remove(id) {
-  await fetch(`/api/customer/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  }).then(() => {
-    let updatedCustomers = [...this.state.customers].filter(i => i.id !== id);
-    this.setState({customers: updatedCustomers});
-  });
-}
-
-
-let deleteQuestion = async (question) =>{
-  //console.log("delete")
-console.log(question)
-  await fetch('http://localhost:3000/api/questions/${question.id}',{method: 'DELETE'});
-}
-*/
-
-
-
-
-/*
-  const deleteQuestion = async (event) => {
-    
-
-    await fetch('http://localhost:3000/api/questions:ID', {method: 'DELETE'});
-    await fetchQuestions();
-
-  };
-*/
+  
   return (
     <div className="App">
 
@@ -166,9 +112,7 @@ console.log(question)
       
       <br/>
       <div class="categories">
-      {/*<h1 className={'text-3xl'}>Categories</h1>*/}
 
-      {/*Value for the current category is: {currentCategory}*/}
       <br/>
       <br/>
       <br/>
@@ -178,7 +122,7 @@ console.log(question)
       <ul>
         <li>
           
-          {/*<button className={'bg-gray-300 p-1 border border-gray-400 rounded cursor-pointer'}>Category 1</button>*/}
+
           <button className={currentCategory==1
               ? 'bg-blue-600 p-2 border border-blue-400 text-white font-bold rounded cursor-pointer'
               : 'bg-gray-300 p-2 border border-gray-400 rounded cursor-pointer'} onClick={() => {
@@ -296,186 +240,7 @@ console.log(question)
 
 
 </div>}
-
-
-
-
-      {/*<ul>*/}
-      {/*  {allDogs.map((dog) => {*/}
-      {/*    return <li key={dog.id}>*/}
-      {/*      id: {dog.id}. &nbsp;&nbsp;&nbsp;*/}
-      {/*      {dog.name}*/}
-      {/*      &nbsp;&nbsp;&nbsp;<button className={'border p-2 bg-red-500'}>Delete this dog</button>*/}
-      {/*    </li>*/}
-      {/*  })}*/}
-      {/*</ul>*/}
-
-
-
-
-
-
-
-      {/*Below is the flexbox way to design the page using tailwind*/}
-      {/*<div className={'flex'}>*/}
-      {/*  <div className={'w-full border p-5'}>*/}
-      {/*    <h1 className={'text-4xl'}>Paper Trader</h1>*/}
-
-      {/*  </div>*/}
-      {/*</div>*/}
-
-      {/*<div className={'flex'}>*/}
-
-      {/*  <div className={'w-2/3 border p-5'}>*/}
-      {/*    Left Box*/}
-
-      {/*  </div>*/}
-
-      {/*  <div className={'w-1/3 border p-5'}>*/}
-      {/*    Right Box*/}
-
-      {/*  </div>*/}
-
-      {/*</div>*/}
-
-
-
-      {/*below is the css grid way of designing the page*/}
-
-
-      {/*<div className="grid grid-cols-12 gap-0 xl:p-20">*/}
-
-      {/*  <div className={'col-span-12 md:col-span-7 border-4 border-gray-900 xl:border-red-500 p-20'}>*/}
-
-      {/*    <h1 className={'font-bold text-2xl text-teal-600'}>Cash Available : {cash}</h1>*/}
-
-      {/*    <br/>*/}
-
-      {/*    <hr/>*/}
-
-      {/*    <br/>*/}
-
-      {/*    <input className={'border'} type={'text'}*/}
-      {/*           onChange={onInputChange}*/}
-      {/*           value={searchStockStr} />*/}
-
-      {/*    &nbsp;&nbsp;<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={getQuote}>Get Quote</button>*/}
-
-
-      {/*    {selectedStock && <div>*/}
-      {/*      <p className={'font-bold text-teal-600 text-xl p-5'}>Current Selected Stock: {selectedStock.name} | Price: ${selectedStock.price}</p>*/}
-
-      {/*      <br/>*/}
-      {/*      <button onClick={() => {*/}
-      {/*        setShares(1);*/}
-      {/*      }} className={shares==1 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>1</button>&nbsp;&nbsp;*/}
-
-      {/*      <button onClick={() => {*/}
-      {/*        setShares(5);*/}
-      {/*      }} className={shares==5 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>5</button>&nbsp;&nbsp;*/}
-
-      {/*      <button onClick={() => {*/}
-      {/*        setShares(10);*/}
-      {/*      }} className={shares==10 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>10</button>&nbsp;&nbsp;*/}
-
-      {/*      <button onClick={() => {*/}
-      {/*        setShares(15);*/}
-      {/*      }} className={shares==15 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>15</button>&nbsp;&nbsp;*/}
-
-      {/*      <button onClick={() => {*/}
-      {/*        setShares(20);*/}
-      {/*      }} className={shares==20 ? 'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded' : 'border border-gray-500 text-white pl-2 pr-2 bg-gray-500 rounded'}>20</button>&nbsp;&nbsp;*/}
-      {/*      /!*<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>25</button>&nbsp;&nbsp;*!/*/}
-      {/*      /!*<button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>30</button>&nbsp;&nbsp;*!/*/}
-
-      {/*      <br/>*/}
-      {/*      <br/>*/}
-      {/*      <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'} onClick={buyStock}>BUY</button>&nbsp;&nbsp;*/}
-      {/*      <button className={'border border-teal-500 text-white pl-2 pr-2 bg-teal-600 rounded'}>SELL</button>*/}
-
-      {/*    </div>}*/}
-
-
-
-      {/*  </div>*/}
-
-      {/*  <div className={'col-span-12 md:col-span-5 border-4 border-gray-900'}>*/}
-      {/*    this is a portfolio box*/}
-
-      {/*  </div>*/}
-
-      {/*</div>*/}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {/*<header className="App-header">*/}
-
-      {/*  <NavBar firstName={'John'} lastName={'Doe'} aFunctionProp={receiveInfoFromChild}   />*/}
-
-      {/*  <form onSubmit={onFormSubmit}>*/}
-      {/*    <input type="text" onChange={runOnInputChange} value={inputText}/>*/}
-      {/*    <input type="submit"/>*/}
-      {/*  </form>*/}
-
-
-
-
-      {/*  <img src={logo} className="App-logo" alt="logo" />*/}
-
-      {/*  <h1 onClick={changeName}>{name}</h1>*/}
-
-      {/*  {name=='Jane' && <p>The Name is now Jane</p>}*/}
-
-
-
-      {/*  <h1>Counter is : {counter}</h1>*/}
-
-      {/*  <button onClick={updateCounter}>Increment Counter</button>*/}
-
-      {/*  <p>*/}
-      {/*    Edit <code>src/App.js</code> and save to reload.*/}
-      {/*  </p>*/}
-
-      {/*  <h1>useState</h1>*/}
-      {/*  <h1>useEffect</h1>*/}
-      {/*  <h1>Rendering Child Components</h1>*/}
-
-
-      {/*  <a*/}
-      {/*    className="App-link"*/}
-      {/*    href="https://reactjs.org"*/}
-      {/*    target="_blank"*/}
-      {/*    rel="noopener noreferrer"*/}
-      {/*  >*/}
-      {/*    Learn React*/}
-      {/*  </a>*/}
-      {/*</header>*/}
-
-
-
-      {/*<div style={{display: 'flex', justifyContent: 'center'}}>*/}
-      {/*  <span>Home</span>*/}
-      {/*  <span>About</span>*/}
-      {/*  <span>Contact</span>*/}
-      {/*</div>*/}
-
+   
 
 
     </div>
